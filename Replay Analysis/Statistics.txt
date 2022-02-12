@@ -1,0 +1,42 @@
+Openings / Kill
+	total openings / Stocks Taken
+Total Damage
+	Add total damage before deaths
+Average Kill%
+	Total Damage dealt / stocks taken
+Neutral Wins%
+	Openings by player / Total openings in game
+Damage / Opening
+	total damage / openings
+First Blood
+	first stock taken
+Earliest Kill
+	lowest damage before death
+Latest Death
+	highest damage before death
+Highest Damage Punish
+	highest damage dealt while within an opening
+Stage Control OR Center Stage control
+	Stage Control - define ledges xposition depending on stage,
+	Center Stage Control - % of time spent closer to center stage than opponent
+Tech%
+	tech animations (roll L/R, in place, wall+walljump, ceiling)/tech animations+miss tech animations (not counting untechables)
+Parry%
+	parry animation / parry + hit while dropping shield + hit shield
+Most common kill move
+	probably count moves that kill while opponent still in hitstun or only moves that kill within a certain time after hitting
+Most Common neutral opener
+	move that starts an opening the most
+Roll count
+	total Rolls and spotdodges
+Edgeguards
+	ledge positions need to be defined for this
+	when player is hit offstage and dies before the opening ends
+
+OPENING DEFINITION (they call them punishes)
+From https://docs.google.com/document/d/19lLJjKCcKoHPzs4wCECHu0E-PTmIXLfPB2wG9jn3qDY/edit#
+
+Punishes
+A punish starts when a player does damage to another player and that player is put in hitstun (or thrown).
+A punish will continue until the player being punished lands on stage, is in control of their character and doesn’t get hit or grabbed again for 45 frames.
+A punish also ends when the opponent dies, these punishes are marked as killing punishes.
