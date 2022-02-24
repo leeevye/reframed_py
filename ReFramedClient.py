@@ -267,6 +267,9 @@ class ReFramedClient:
                 attack_connected = True if (flags & 0x01) else False
                 facing_direction = True if (flags & 0x02) else False
 
+                lastframe = -1
+                lastidx = -1
+
                 if entry_id in entry_ids:
                     for l in self.__frame_callbacks:
                         l(self.mapping_info, frame, entry_ids[entry_id], fighter_ids, posx, posy, damage, hitstun, shield, status, motion, hit_status, stocks, attack_connected, facing_direction)
