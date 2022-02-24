@@ -177,12 +177,12 @@ def replayedstatistics(replayfile, filename):
         for file in filenames:
             open(file, 'w').close()
             with open(file, "a") as outputfile:
-                outputfile.write("\nPlayer 1:\n")
+                outputfile.write("Player 1:\n")
                 finalstatistics(p1punishes, p2punishes, p1killingpunishes, p2damagetaken, p1damagesatdeath, p2damagesatdeath, p1stagecontrol, p2stagecontrol, p1firsthits, p1lasthits, outputfile)
                 outputfile.write("\nPlayer 2:\n")
                 finalstatistics(p2punishes, p1punishes, p2killingpunishes, p1damagetaken, p2damagesatdeath, p1damagesatdeath, p2stagecontrol, p1stagecontrol, p2firsthits, p2lasthits, outputfile)
 
-                outputfile.write("Stage: ")
+                outputfile.write("\nStage: ")
                 outputfile.write(stage) #stage
                 outputfile.write("Duration: ")
                 outputfile.write(str(durationmins)+":"+str(durationsecs)+"\n")
@@ -204,11 +204,11 @@ def replayedstatistics(replayfile, filename):
                 outputfile.write("P2 Tag: ")
                 outputfile.write(players["1"][0]+"\n")
 
-        open("stats\\p1.stats", 'w').close()
-        open("stats\\p2.stats", 'w').close()
         with open("stats\\p1.stats", 'a') as outputfile:
+            outputfile.write(players["0"][2]+"\n")
             basicstatistics(p1punishes, p2punishes, p1killingpunishes, p2damagetaken, p1damagesatdeath, p2damagesatdeath, p1stagecontrol, p2stagecontrol, p1firsthits, p1lasthits, outputfile)
         with open("stats\\p2.stats", 'a') as outputfile:
+            outputfile.write(players["1"][2]+"\n")
             basicstatistics(p2punishes, p1punishes, p2killingpunishes, p1damagetaken, p2damagesatdeath, p1damagesatdeath, p2stagecontrol, p1stagecontrol, p2firsthits, p2lasthits, outputfile)
 
 

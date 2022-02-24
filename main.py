@@ -49,6 +49,9 @@ def handle_training_ended():
 def handle_match_started(mapping_info, stage_id, fighter_ids, tags, names):
     print("match started")
 
+    open("stats\\p1.stats", 'w').close()
+    open("stats\\p2.stats", 'w').close()
+
     try:
         print(f"stage: {mapping_info.stage_names[stage_id]}")
     except KeyError:
@@ -92,6 +95,10 @@ def handle_match_resumed(mapping_info, stage_id, fighter_ids, tags, names):
     replay = open(replayname, "a")
 
     print("match resumed")
+
+    open("stats\\p1.stats", 'w').close()
+    open("stats\\p2.stats", 'w').close()
+    
     try:
         stage_name = mapping_info.stage_names[stage_id]
     except KeyError:
