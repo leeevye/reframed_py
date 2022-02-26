@@ -11,7 +11,7 @@ if len(sys.argv) > 1:
     if not client.connect(sys.argv[1]):
         sys.exit(1)
 else:
-    if not client.connect("192.168.1.36"): #client.connect(input("Switch IP Address: ")):
+    if not client.connect("192.168.76.107"): #client.connect(input("Switch IP Address: ")):
         sys.exit(1)
 
 @client.on_training_started
@@ -48,9 +48,14 @@ def handle_training_ended():
 @client.on_match_started
 def handle_match_started(mapping_info, stage_id, fighter_ids, tags, names):
     print("match started")
+    with open("stats\\obsscene.stats", 'w') as outputfile:
+        outputfile.write("Game")
 
     open("stats\\p1.stats", 'w').close()
     open("stats\\p2.stats", 'w').close()
+    open("stats\\names.stats", 'w').close()
+    with open("stats\\names.stats", 'a') as outputfile:
+        outputfile.write("Calculating...")
 
     try:
         print(f"stage: {mapping_info.stage_names[stage_id]}")
@@ -98,7 +103,7 @@ def handle_match_resumed(mapping_info, stage_id, fighter_ids, tags, names):
 
     open("stats\\p1.stats", 'w').close()
     open("stats\\p2.stats", 'w').close()
-    
+
     try:
         stage_name = mapping_info.stage_names[stage_id]
     except KeyError:

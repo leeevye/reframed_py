@@ -171,6 +171,19 @@ def replayedstatistics(replayfile, filename):
 
 
     if True:
+        
+        with open("stats\\p1.stats", 'a') as outputfile:
+            outputfile.write(players["0"][2]+"\n\n")
+            basicstatistics(p1punishes, p2punishes, p1killingpunishes, p2damagetaken, p1damagesatdeath, p2damagesatdeath, p1stagecontrol, p2stagecontrol, p1firsthits, p1lasthits, outputfile)
+        with open("stats\\p2.stats", 'a') as outputfile:
+            outputfile.write(players["1"][2]+"\n\n")
+            basicstatistics(p2punishes, p1punishes, p2killingpunishes, p1damagetaken, p2damagesatdeath, p1damagesatdeath, p2stagecontrol, p1stagecontrol, p2firsthits, p2lasthits, outputfile)
+        open("stats\\names.stats", 'w').close()
+        with open("stats\\names.stats", 'a') as outputfile:
+            outputfile.write("VS\n\nNeutral Wins\nStocks Taken\nOpenings / Kill\nNeutral Win %\nTotal Damage Done\nAverage Kill Percent\nAverage Damage / Opening\nEarliest Kill\nLatest Death\nStage Control %")
+        with open("stats\\obsscene.stats", 'w') as outputfile:
+            outputfile.write("Statistics")
+
         filenames = ["stats\\"+filename[11:].removesuffix('.replay')+".stats", "stats\\latest.stats"]
         #filename = filename[11:].removesuffix('.replay')+".stats"
         #filename = "latest.stats"
@@ -203,14 +216,6 @@ def replayedstatistics(replayfile, filename):
                 outputfile.write(players["0"][0]+"\n")
                 outputfile.write("P2 Tag: ")
                 outputfile.write(players["1"][0]+"\n")
-
-        with open("stats\\p1.stats", 'a') as outputfile:
-            outputfile.write(players["0"][2]+"\n")
-            basicstatistics(p1punishes, p2punishes, p1killingpunishes, p2damagetaken, p1damagesatdeath, p2damagesatdeath, p1stagecontrol, p2stagecontrol, p1firsthits, p1lasthits, outputfile)
-        with open("stats\\p2.stats", 'a') as outputfile:
-            outputfile.write(players["1"][2]+"\n")
-            basicstatistics(p2punishes, p1punishes, p2killingpunishes, p1damagetaken, p2damagesatdeath, p1damagesatdeath, p2stagecontrol, p1stagecontrol, p2firsthits, p2lasthits, outputfile)
-
 
 def convertstats(stats):
     """
