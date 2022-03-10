@@ -11,7 +11,7 @@ if len(sys.argv) > 1:
     if not client.connect(sys.argv[1]):
         sys.exit(1)
 else:
-    if not client.connect("192.168.76.107"): #client.connect(input("Switch IP Address: ")):
+    if not client.connect("192.168.15.47"): #client.connect(input("Switch IP Address: ")):
         sys.exit(1)
 
 @client.on_training_started
@@ -71,6 +71,11 @@ def handle_match_started(mapping_info, stage_id, fighter_ids, tags, names):
     global lastidx
     lastframe = -1
     lastidx = -1
+
+    global countingdown
+    global countdown
+    countingdown = False
+    countdown = 6
 
     mappinginfo = mapping_info
     fighterids = fighter_ids
@@ -135,10 +140,19 @@ def handle_match_resumed(mapping_info, stage_id, fighter_ids, tags, names):
 def handle_match_ended():
     print("match ended")
     global replay
-    replay.write("MATCH END")
-    replay.close()
-    replayfile = open(replayname)
-    replayed.replayedstatistics(replayfile, replayname)
+    global countingdown
+    global countdown
+    countingdown = False
+    countdown = 10
+    with open("stats\\obsscene.stats", 'w') as outputfile:
+        outputfile.write("Statistics")
+    #try:
+        #replay.write("MATCH END")
+        #replay.close()
+    #except:
+        #pass
+    #replayfile = open(replayname)
+    #replayed.replayedstatistics(replayfile, replayname)
 
 
 @client.on_frame
@@ -147,6 +161,9 @@ def handle_frame(mapping_info, frame, idx, fighter_ids, posx, posy, damage, hits
     #frameinfo = f"\n{idx}: {frame=}, {posx=}, {posy=}, {damage=}, {hitstun=}, {shield=}, {status=}, {motion=}, {hit_status=}, {stocks=}, {attack_connected=}, {facing_direction=}"
     global lastframe
     global lastidx
+    global countingdown
+    global countdown
+
     if frame == lastframe and idx == lastidx:
         return
     else:
@@ -168,12 +185,32 @@ def handle_frame(mapping_info, frame, idx, fighter_ids, posx, posy, damage, hits
 
     frameinfo = f"{frame=}, {idx=}, {stocks=}, {damage=}, {hitstun=}, {shield=}, {posx=}, {posy=}, {status=}, {attack_connected=}\n"
     #print(frameinfo)
-    replay.write(frameinfo)
-    pass
 
-try:
-    client.run()
-except:
-    print("Could not connect")
-    input("Press any key to exit")
+    if stocks == 0 and countingdown == False and countdown == 6:
+        countingdown = True
+
+    if countdown == 0:
+        if countingdown == True:
+            countingdown = False
+            print("DONE")
+            try:
+                replay.write("MATCH END")
+                replay.close()
+            except:
+                pass
+            replayfile = open(replayname)
+            replayed.replayedstatistics(replayfile, replayname)
+        else:
+            return
+    else:
+        if countingdown == True:
+            countdown = countdown - 1
+        replay.write(frameinfo)
+
+
+#try:
+client.run()
+#except Exception as e:
+#    print(e)
+#    input("Press any key to exit")
 client.disconnect()
