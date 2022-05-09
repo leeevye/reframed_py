@@ -181,38 +181,23 @@ def replayedstatistics(replayfile, filename):
         with open("stats\\names.stats", 'a') as outputfile:
             outputfile.write("VS\n\nNeutral Wins\nStocks Taken\nOpenings / Kill\nNeutral Win %\nTotal Damage Done\nAverage Kill Percent\nAverage Damage / Opening\nEarliest Kill\nLatest Death\nStage Control %")
 
-        filenames = ["stats\\"+filename[11:].removesuffix('.replay')+".stats", "stats\\latest.stats"]
-        #filename = filename[11:].removesuffix('.replay')+".stats"
-        #filename = "latest.stats"
+        filenames = ["stats\\"+filename[11:].removesuffix('.replay')+".stats"]
         for file in filenames:
             open(file, 'w').close()
             with open(file, "a") as outputfile:
                 outputfile.write("Player 1:\n")
-                finalstatistics(p1punishes, p2punishes, p1killingpunishes, p2damagetaken, p1damagesatdeath, p2damagesatdeath, p1stagecontrol, p2stagecontrol, p1firsthits, p1lasthits, outputfile)
+                finalstatistics(p1punishes, p2punishes, p2damagetaken, p2damagesatdeath, p1stagecontrol, p2stagecontrol, outputfile)
                 outputfile.write("\nPlayer 2:\n")
-                finalstatistics(p2punishes, p1punishes, p2killingpunishes, p1damagetaken, p2damagesatdeath, p1damagesatdeath, p2stagecontrol, p1stagecontrol, p2firsthits, p2lasthits, outputfile)
+                finalstatistics(p2punishes, p1punishes, p1damagetaken, p1damagesatdeath, p2stagecontrol, p1stagecontrol, outputfile)
 
                 outputfile.write("\nStage: ")
                 outputfile.write(stage) #stage
                 outputfile.write("Duration: ")
                 outputfile.write(str(durationmins)+":"+str(durationsecs)+"\n")
-                outputfile.write("First Blood: ")
-                try:
-                    outputfile.write(firstblood+"\n")
-                except:
-                    outputfile.write("N/A\n")
                 outputfile.write("P1 Character: ")
                 outputfile.write(players["0"][2]+"\n")
                 outputfile.write("P2 Character: ")
                 outputfile.write(players["1"][2]+"\n")
-                outputfile.write("P1 Alt: ")
-                outputfile.write("N/A"+"\n")
-                outputfile.write("P2 Alt: ")
-                outputfile.write("N/A"+"\n")
-                outputfile.write("P1 Tag: ")
-                outputfile.write(players["0"][0]+"\n")
-                outputfile.write("P2 Tag: ")
-                outputfile.write(players["1"][0]+"\n")
 
 def convertstats(stats):
     """
@@ -254,25 +239,16 @@ def punishes(playerstats, oldplayerstats, playerlandedonstage, opponentpunishing
 
     return playerstats, oldplayerstats, playerlandedonstage, opponentpunishing, punishes, killingpunishes, opponentfirsthits, opponentlasthits, opponentlatesthit
 
-def finalstatistics(playerpunishes, opponentpunishes, playerkillingpunishes, opponentdamagetaken, playerdamagesatdeath, opponentdamagesatdeath, playerstagecontrol, opponentstagecontrol, playerfirsthits, playerlasthits, outputfile):
+def finalstatistics(playerpunishes, opponentpunishes, opponentdamagetaken, opponentdamagesatdeath, playerstagecontrol, opponentstagecontrol, outputfile):
     """
     this function calculates final statistics
     """
-    outputfile.write("Neutral Wins: ")
-    outputfile.write(str(playerpunishes)+"\n")
-    outputfile.write("Stocks Taken: ")
-    outputfile.write(str(playerkillingpunishes)+"\n")
-    outputfile.write("Openings / Kill: ")
-    try:
-        outputfile.write(str(round(playerpunishes/playerkillingpunishes, 2))+"\n")
-    except:
-        outputfile.write("N/A\n")
     outputfile.write("Neutral Win %: ")
     try:
         outputfile.write(str(round((playerpunishes/(playerpunishes+opponentpunishes))*100, 2))+"%\n")
     except:
         outputfile.write("N/A\n")
-    outputfile.write("Total Damage Done: ")
+    outputfile.write("Total Damage Dealt: ")
     outputfile.write(str(round(opponentdamagetaken, 1))+"\n")
     outputfile.write("Average Kill Percent: ")
     try:
@@ -284,78 +260,39 @@ def finalstatistics(playerpunishes, opponentpunishes, playerkillingpunishes, opp
         outputfile.write(str(round(opponentdamagetaken/playerpunishes,1))+"\n")
     except:
         outputfile.write("N/A\n")
-    outputfile.write("Earliest Kill: ")
-    try:
-        outputfile.write(str(round(min(opponentdamagesatdeath), 1))+"\n")
-    except:
-        outputfile.write("N/A\n")
-    outputfile.write("Latest Death: ")
-    try:
-        outputfile.write(str(round(max(playerdamagesatdeath), 1))+"\n")
-    except:
-        outputfile.write("N/A\n")
     outputfile.write("Stage Control %: ")
     try:
         outputfile.write(str(round(playerstagecontrol/(playerstagecontrol+opponentstagecontrol)*100, 2))+"%\n")
     except:
         outputfile.write("N/A\n")
-    if False:
-        outputfile.write("Most Common Neutral Opener: ")
-        try:
-            outputfile.write(statistics.mode(playerfirsthits)+"\n")
-        except:
-            outputfile.write("N/A\n")
-        outputfile.write("Most Common Kill Move: ")
-        try:
-            outputfile.write(statistics.mode(playerlasthits)+"\n")
-        except:
-            outputfile.write("N/A\n")
     return
 
-def basicstatistics(playerpunishes, opponentpunishes, playerkillingpunishes, opponentdamagetaken, playerdamagesatdeath, opponentdamagesatdeath, playerstagecontrol, opponentstagecontrol, playerfirsthits, playerlasthits, outputfile):
+def basicstatistics(playerpunishes, opponentpunishes, opponentdamagetaken, opponentdamagesatdeath, playerstagecontrol, opponentstagecontrol, outputfile):
     """
     this function calculates final statistics but combined
     """
-    outputfile.write(str(playerpunishes)+"\n")
-    outputfile.write(str(playerkillingpunishes)+"\n")
-    try:
-        outputfile.write(str(round(playerpunishes/playerkillingpunishes, 2))+"\n")
-    except:
-        outputfile.write("N/A\n")
+    #Neutral Win %
     try:
         outputfile.write(str(round((playerpunishes/(playerpunishes+opponentpunishes))*100, 2))+"%\n")
     except:
         outputfile.write("N/A\n")
+    #Total Damage Dealt
     outputfile.write(str(round(opponentdamagetaken, 1))+"\n")
+    #Average Kill Percent
     try:
         outputfile.write(str(round(statistics.mean(opponentdamagesatdeath), 1))+"\n")
     except:
         outputfile.write("N/A\n")
+    #Average Damage / Opening
     try:
         outputfile.write(str(round(opponentdamagetaken/playerpunishes,1))+"\n")
     except:
         outputfile.write("N/A\n")
-    try:
-        outputfile.write(str(round(min(opponentdamagesatdeath), 1))+"\n")
-    except:
-        outputfile.write("N/A\n")
-    try:
-        outputfile.write(str(round(max(playerdamagesatdeath), 1))+"\n")
-    except:
-        outputfile.write("N/A\n")
+    #Stage Control %
     try:
         outputfile.write(str(round(playerstagecontrol/(playerstagecontrol+opponentstagecontrol)*100, 2))+"%\n")
     except:
         outputfile.write("N/A\n")
-    if False:
-        try:
-            outputfile.write(statistics.mode(playerfirsthits)+"\n")
-        except:
-            outputfile.write("N/A\n")
-        try:
-            outputfile.write(statistics.mode(playerlasthits)+"\n")
-        except:
-            outputfile.write("N/A\n")
     return
 
 if __name__ == '__main__':
