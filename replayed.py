@@ -181,7 +181,7 @@ def replayedstatistics(replayfile, filename):
         with open("stats\\names.stats", 'a') as outputfile:
             outputfile.write("Neutral Wins\nStocks Taken\nOpenings / Kill\nNeutral Win %\nTotal Damage Dealt\nAverage Kill Percent\nAverage Damage / Opening\nEarliest Kill\nLatest Death\nStage Control %")
 
-        filenames = ["stats\\"+filename[11:].removesuffix('.replay')+".stats"]
+        filenames = ["stats\\collection\\"+filename[11:].removesuffix('.replay')+".stats"]
         for file in filenames:
             open(file, 'w').close()
             with open(file, "a") as outputfile:

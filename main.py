@@ -54,8 +54,15 @@ def handle_match_started(mapping_info, stage_id, fighter_ids, tags, names):
     open("stats\\p1.stats", 'w').close()
     open("stats\\p2.stats", 'w').close()
     open("stats\\names.stats", 'w').close()
+    open("stats\\p1char.stats", 'w').close()
+    open("stats\\p2char.stats", 'w').close()
+
     with open("stats\\names.stats", 'a') as outputfile:
         outputfile.write("Calculating...")
+    with open("stats\\p1char.stats", 'a') as outputfile:
+        outputfile.write(mapping_info.fighter_names[fighter_ids[0]])
+    with open("stats\\p2char.stats", 'a') as outputfile:
+        outputfile.write(mapping_info.fighter_names[fighter_ids[1]])
 
     try:
         print(f"stage: {mapping_info.stage_names[stage_id]}")
