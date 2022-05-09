@@ -48,8 +48,6 @@ def handle_training_ended():
 @client.on_match_started
 def handle_match_started(mapping_info, stage_id, fighter_ids, tags, names):
     print("match started")
-    with open("stats\\obsscene.stats", 'w') as outputfile:
-        outputfile.write("Game")
 
     open("stats\\p1.stats", 'w').close()
     open("stats\\p2.stats", 'w').close()
@@ -82,7 +80,7 @@ def handle_match_started(mapping_info, stage_id, fighter_ids, tags, names):
     global countingdown
     global countdown
     countingdown = False
-    countdown = 6
+    countdown = 4
 
     mappinginfo = mapping_info
     fighterids = fighter_ids
@@ -150,9 +148,7 @@ def handle_match_ended():
     global countingdown
     global countdown
     countingdown = False
-    countdown = 10
-    with open("stats\\obsscene.stats", 'w') as outputfile:
-        outputfile.write("Statistics")
+    countdown = 4
     #try:
         #replay.write("MATCH END")
         #replay.close()
@@ -193,7 +189,7 @@ def handle_frame(mapping_info, frame, idx, fighter_ids, posx, posy, damage, hits
     frameinfo = f"{frame=}, {idx=}, {stocks=}, {damage=}, {hitstun=}, {shield=}, {posx=}, {posy=}, {status=}, {attack_connected=}\n"
     #print(frameinfo)
 
-    if stocks == 0 and countingdown == False and countdown == 6:
+    if stocks == 0 and countingdown == False and countdown == 4:
         countingdown = True
 
     if countdown == 0:
