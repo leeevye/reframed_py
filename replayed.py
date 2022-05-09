@@ -179,7 +179,7 @@ def replayedstatistics(replayfile, filename):
             basicstatistics(p2punishes, p1punishes, p2killingpunishes, p1damagetaken, p2damagesatdeath, p1damagesatdeath, p2stagecontrol, p1stagecontrol, p2firsthits, p2lasthits, outputfile)
         open("stats\\names.stats", 'w').close()
         with open("stats\\names.stats", 'a') as outputfile:
-            outputfile.write("VS\n\nNeutral Wins\nStocks Taken\nOpenings / Kill\nNeutral Win %\nTotal Damage Done\nAverage Kill Percent\nAverage Damage / Opening\nEarliest Kill\nLatest Death\nStage Control %")
+            outputfile.write("Neutral Wins\nStocks Taken\nOpenings / Kill\nNeutral Win %\nTotal Damage Dealt\nAverage Kill Percent\nAverage Damage / Opening\nEarliest Kill\nLatest Death\nStage Control %")
 
         filenames = ["stats\\"+filename[11:].removesuffix('.replay')+".stats"]
         for file in filenames:
