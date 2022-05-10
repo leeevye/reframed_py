@@ -172,14 +172,12 @@ def replayedstatistics(replayfile, filename):
 
     if True:
         with open("stats\\p1.stats", 'a') as outputfile:
-            outputfile.write(players["0"][2]+"\n\n")
-            basicstatistics(p1punishes, p2punishes, p1killingpunishes, p2damagetaken, p1damagesatdeath, p2damagesatdeath, p1stagecontrol, p2stagecontrol, p1firsthits, p1lasthits, outputfile)
+            basicstatistics(p1punishes, p2punishes, p2damagetaken, p2damagesatdeath, p1stagecontrol, p2stagecontrol, outputfile)
         with open("stats\\p2.stats", 'a') as outputfile:
-            outputfile.write(players["1"][2]+"\n\n")
-            basicstatistics(p2punishes, p1punishes, p2killingpunishes, p1damagetaken, p2damagesatdeath, p1damagesatdeath, p2stagecontrol, p1stagecontrol, p2firsthits, p2lasthits, outputfile)
+            basicstatistics(p2punishes, p1punishes, p1damagetaken, p1damagesatdeath, p2stagecontrol, p1stagecontrol, outputfile)
         open("stats\\names.stats", 'w').close()
         with open("stats\\names.stats", 'a') as outputfile:
-            outputfile.write("Neutral Wins\nStocks Taken\nOpenings / Kill\nNeutral Win %\nTotal Damage Dealt\nAverage Kill Percent\nAverage Damage / Opening\nEarliest Kill\nLatest Death\nStage Control %")
+            outputfile.write("Neutral Win %\nTotal Damage Dealt\nAverage Kill Percent\nAverage Damage / Opening\nStage Control %")
 
         filenames = ["stats\\collection\\"+filename[11:].removesuffix('.replay')+".stats"]
         for file in filenames:
