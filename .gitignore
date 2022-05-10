@@ -2,4 +2,4 @@ replays/
 stats/collection/
 __pycache__/
 Notes.txt
-/stats/*.stats
+*.stats
