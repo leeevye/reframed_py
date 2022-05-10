@@ -2,6 +2,7 @@ import sys
 import glob
 import os
 import statistics
+import time
 
 frame = 0
 idx = 1
@@ -171,6 +172,9 @@ def replayedstatistics(replayfile, filename):
 
 
     if True:
+        
+        start = time.time()
+        
         with open("stats\\p1.stats", 'a') as outputfile:
             basicstatistics(p1punishes, p2punishes, p2damagetaken, p2damagesatdeath, p1stagecontrol, p2stagecontrol, outputfile)
         with open("stats\\p2.stats", 'a') as outputfile:
@@ -178,6 +182,8 @@ def replayedstatistics(replayfile, filename):
         open("stats\\names.stats", 'w').close()
         with open("stats\\names.stats", 'a') as outputfile:
             outputfile.write("Neutral Win %\nTotal Damage Dealt\nAverage Kill Percent\nAverage Damage / Opening\nStage Control %")
+
+        print(time.time() - start)
 
         filenames = ["stats\\collection\\"+filename[11:].removesuffix('.replay')+".stats"]
         for file in filenames:
