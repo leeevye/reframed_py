@@ -11,7 +11,7 @@ if len(sys.argv) > 1:
     if not client.connect(sys.argv[1]):
         sys.exit(1)
 else:
-    if not client.connect("192.168.15.47"): #client.connect(input("Switch IP Address: ")):
+    if not client.connect("192.168.20.10"): #client.connect(input("Switch IP Address: ")):
         sys.exit(1)
 
 @client.on_training_started
