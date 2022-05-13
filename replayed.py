@@ -172,15 +172,15 @@ def replayedstatistics(replayfile, filename):
 
 
     if True:
-        with open("stats\\p1.stats", 'a') as outputfile:
+        with open("stats\\p1stats.txt", 'a') as outputfile:
             basicstatistics(p1punishes, p2punishes, p1killingpunishes, p2damagetaken, p1damagesatdeath, p2damagesatdeath, p1stagecontrol, p2stagecontrol, p1firsthits, p1lasthits, outputfile)
-        with open("stats\\p2.stats", 'a') as outputfile:
+        with open("stats\\p2stats.txt", 'a') as outputfile:
             basicstatistics(p2punishes, p1punishes, p2killingpunishes, p1damagetaken, p2damagesatdeath, p1damagesatdeath, p2stagecontrol, p1stagecontrol, p2firsthits, p2lasthits, outputfile)
-        open("stats\\names.stats", 'w').close()
-        with open("stats\\names.stats", 'a') as outputfile:
+        open("stats\\names.txt", 'w').close()
+        with open("stats\\names.txt", 'a') as outputfile:
             outputfile.write("Neutral Wins\nStocks Taken\nOpenings / Kill\nNeutral Win %\nTotal Damage Dealt\nAverage Kill Percent\nAverage Damage / Opening\nEarliest Kill\nLatest Death\nStage Control %")
 
-        file = "stats\\collection\\"+filename[11:].removesuffix('.replay')+".stats"
+        file = "stats\\collection\\"+filename[11:].removesuffix('.replay')+".txt"
         with open(file, "a") as outputfile:
             outputfile.write("Player 1:\n")
             finalstatistics(p1punishes, p2punishes, p1killingpunishes, p2damagetaken, p1damagesatdeath, p2damagesatdeath, p1stagecontrol, p2stagecontrol, p1firsthits, p1lasthits, outputfile)

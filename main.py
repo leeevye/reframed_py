@@ -53,20 +53,20 @@ def handle_training_ended():
 @client.on_match_started
 def handle_match_started(mapping_info, stage_id, fighter_ids, tags, names):
     print("match started")
-    with open("stats\\obsscene.stats", 'w') as outputfile:
+    with open("stats\\obsscene.txt", 'w') as outputfile:
         outputfile.write("Game")
 
-    open("stats\\p1.stats", 'w').close()
-    open("stats\\p2.stats", 'w').close()
-    open("stats\\names.stats", 'w').close()
-    open("stats\\p1char.stats", 'w').close()
-    open("stats\\p2char.stats", 'w').close()
+    open("stats\\p1stats.txt", 'w').close()
+    open("stats\\p2stats.txt", 'w').close()
+    open("stats\\names.txt", 'w').close()
+    open("stats\\p1char.txt", 'w').close()
+    open("stats\\p2char.txt", 'w').close()
 
-    with open("stats\\names.stats", 'a') as outputfile:
+    with open("stats\\names.txt", 'a') as outputfile:
         outputfile.write("Calculating...")
-    with open("stats\\p1char.stats", 'a') as outputfile:
+    with open("stats\\p1char.txt", 'a') as outputfile:
         outputfile.write(mapping_info.fighter_names[fighter_ids[0]])
-    with open("stats\\p2char.stats", 'a') as outputfile:
+    with open("stats\\p2char.txt", 'a') as outputfile:
         outputfile.write(mapping_info.fighter_names[fighter_ids[1]])
 
     try:
@@ -118,8 +118,8 @@ def handle_match_resumed(mapping_info, stage_id, fighter_ids, tags, names):
 
     print("match resumed")
 
-    open("stats\\p1.stats", 'w').close()
-    open("stats\\p2.stats", 'w').close()
+    open("stats\\p1stats.txt", 'w').close()
+    open("stats\\p2stats.txt", 'w').close()
 
     try:
         stage_name = mapping_info.stage_names[stage_id]
@@ -156,7 +156,7 @@ def handle_match_ended():
     global countdown
     countingdown = False
     countdown = 2
-    with open("stats\\obsscene.stats", 'w') as outputfile:
+    with open("stats\\obsscene.txt", 'w') as outputfile:
         outputfile.write("Statistics")
     #try:
         #replay.write("MATCH END")
