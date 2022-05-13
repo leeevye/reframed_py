@@ -1,5 +1,5 @@
 [switch]
-ipaddress = "192.168.20.10"
+ipaddress = "0.0.0.0"
 
 [statistics]
 # Order the output of statistics by numbering here. Use a 0 to exclude a statistic.
