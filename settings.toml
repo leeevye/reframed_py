@@ -3,13 +3,13 @@ ipaddress = "192.168.20.10"
 
 [statistics]
 # Order the output of statistics by numbering here. Use a 0 to exclude a statistic.
-"Neutral Wins" = 0
-"Stocks Taken" = 0
-"Openings / Kill" = 0
-"Neutral Win %" = 1
-"Total Damage Dealt" = 2
-"Average Kill Percent" = 3
-"Average Damage / Opening" = 4
-"Earliest Kill" = 0
-"Latest Death" = 0
-"Stage Control" = 5
+"Neutral Wins" = 1
+"Stocks Taken" = 2
+"Openings / Kill" = 3
+"Neutral Win %" = 4
+"Total Damage Dealt" = 5
+"Average Kill Percent" = 6
+"Average Damage / Opening" = 7
+"Earliest Kill" = 8
+"Latest Death" = 9
+"Stage Control" = 10

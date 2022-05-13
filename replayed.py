@@ -8,7 +8,6 @@ settings = toml.load("settings.toml")
 statistics = settings["statistics"]
 statistics = {k:v for k,v in statistics.items() if v != 0}
 statistics = dict(sorted(statistics.items(), key=lambda item: item[1]))
-statistics = list(statistics)
 
 frame = 0
 idx = 1
@@ -195,7 +194,7 @@ def replayedstatistics(replayfile, filename):
             finalstatistics(p2punishes, p1punishes, p2killingpunishes, p1damagetaken, p2damagesatdeath, p1damagesatdeath, p2stagecontrol, p1stagecontrol, p2firsthits, p2lasthits, outputfile)
 
             outputfile.write("\nStage: ")
-            outputfile.write(stage) #stage
+            outputfile.write(stage)
             outputfile.write("Duration: ")
             outputfile.write(str(durationmins)+":"+str(durationsecs)+"\n")
             outputfile.write("First Blood: ")
@@ -318,37 +317,64 @@ def basicstatistics(playerpunishes, opponentpunishes, playerkillingpunishes, opp
     """
     this function calculates final statistics but combined
     """
-    outputfile.write(str(playerpunishes)+"\n")
-    outputfile.write(str(playerkillingpunishes)+"\n")
-    try:
-        outputfile.write(str(round(playerpunishes/playerkillingpunishes, 2))+"\n")
-    except:
-        outputfile.write("N/A\n")
-    try:
-        outputfile.write(str(round((playerpunishes/(playerpunishes+opponentpunishes))*100, 2))+"%\n")
-    except:
-        outputfile.write("N/A\n")
-    outputfile.write(str(round(opponentdamagetaken, 1))+"\n")
-    try:
-        outputfile.write(str(round(statistics.mean(opponentdamagesatdeath), 1))+"\n")
-    except:
-        outputfile.write("N/A\n")
-    try:
-        outputfile.write(str(round(opponentdamagetaken/playerpunishes,1))+"\n")
-    except:
-        outputfile.write("N/A\n")
-    try:
-        outputfile.write(str(round(min(opponentdamagesatdeath), 1))+"\n")
-    except:
-        outputfile.write("N/A\n")
-    try:
-        outputfile.write(str(round(max(playerdamagesatdeath), 1))+"\n")
-    except:
-        outputfile.write("N/A\n")
-    try:
-        outputfile.write(str(round(playerstagecontrol/(playerstagecontrol+opponentstagecontrol)*100, 2))+"%\n")
-    except:
-        outputfile.write("N/A\n")
+    if "Neutral Wins" in statistics:
+        statistics["Neutral Wins"] = str(playerpunishes)+"\n"
+
+    if "Stocks Taken" in statistics:
+        statistics["Stocks Taken"] = str(playerkillingpunishes)+"\n"
+
+    if "Openings / Kill" in statistics:
+        try:
+            statistics["Openings / Kill"] = str(round(playerpunishes/playerkillingpunishes, 2))+"\n"
+        except Exception as e:
+            print(e)
+            statistics["Openings / Kill"] = "N/A\n"
+
+    if "Neutral Win %" in statistics:
+        try:
+            statistics["Neutral Win %"] = str(round((playerpunishes/(playerpunishes+opponentpunishes))*100, 2))+"%\n"
+        except Exception as e:
+            print(e)
+            statistics["Neutral Win %"] = "N/A\n"
+
+    if "Total Damage Dealt" in statistics:
+        statistics["Total Damage Dealt"] = str(round(opponentdamagetaken, 1))+"\n"
+
+    if "Average Kill Percent" in statistics:
+        try:
+            statistics["Average Kill Percent"] = str(round(statistics.mean(opponentdamagesatdeath), 1))+"\n"
+        except Exception as e:
+            print(e)
+            statistics["Average Kill Percent"] = "N/A\n"
+
+    if "Average Damage / Opening" in statistics:
+        try:
+            statistics["Average Damage / Opening"] = str(round(opponentdamagetaken/playerpunishes,1))+"\n"
+        except Exception as e:
+            print(e)
+            statistics["Average Damage / Opening"] = "N/A\n"
+
+    if "Earliest Kill" in statistics:
+        try:
+            statistics["Earliest Kill"] = str(round(min(opponentdamagesatdeath), 1))+"\n"
+        except Exception as e:
+            print(e)
+            statistics["Earliest Kill"] = "N/A\n"
+
+    if "Latest Death" in statistics:
+        try:
+            statistics["Latest Death"] = str(round(max(playerdamagesatdeath), 1))+"\n"
+        except Exception as e:
+            print(e)
+            statistics["Latest Death"] = "N/A\n"
+
+    if "Stage Control" in statistics:
+        try:
+            statistics["Stage Control"] = str(round(playerstagecontrol/(playerstagecontrol+opponentstagecontrol)*100, 2))+"%\n"
+        except Exception as e:
+            print(e)
+            statistics["Stage Control"] = "N/A\n"
+
     if False:
         try:
             outputfile.write(statistics.mode(playerfirsthits)+"\n")
@@ -358,6 +384,10 @@ def basicstatistics(playerpunishes, opponentpunishes, playerkillingpunishes, opp
             outputfile.write(statistics.mode(playerlasthits)+"\n")
         except:
             outputfile.write("N/A\n")
+
+    for value in statistics.values():
+        outputfile.write(value)
+
     return
 
 if __name__ == '__main__':
