@@ -9,8 +9,6 @@ statistics = settings["statistics"]
 statistics = {k:v for k,v in statistics.items() if v != 0}
 statistics = dict(sorted(statistics.items(), key=lambda item: item[1]))
 statistics = list(statistics)
-print(statistics)
-input()
 
 frame = 0
 idx = 1
@@ -186,7 +184,8 @@ def replayedstatistics(replayfile, filename):
             basicstatistics(p2punishes, p1punishes, p2killingpunishes, p1damagetaken, p2damagesatdeath, p1damagesatdeath, p2stagecontrol, p1stagecontrol, p2firsthits, p2lasthits, outputfile)
         open("stats\\names.txt", 'w').close()
         with open("stats\\names.txt", 'a') as outputfile:
-            outputfile.write("Neutral Wins\nStocks Taken\nOpenings / Kill\nNeutral Win %\nTotal Damage Dealt\nAverage Kill Percent\nAverage Damage / Opening\nEarliest Kill\nLatest Death\nStage Control %")
+            for stat in statistics:
+                outputfile.write(stat+"\n")
 
         file = "stats\\collection\\"+filename[11:].removesuffix('.replay')+".txt"
         with open(file, "a") as outputfile:

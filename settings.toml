@@ -1,17 +1,15 @@
-title = "Settings"
-
 [switch]
 ipaddress = "192.168.20.10"
 
 [statistics]
 # Order the output of statistics by numbering here. Use a 0 to exclude a statistic.
-neutralwins = 0
-stockstaken = 0
-openingsperkill = 0
-neutralwinpercent = 1
-totaldamagedealt = 2
-averagekillpercent = 3
-averagedamageperopening = 4
-earliestkill = 0
-latestdeath = 0
-stagecontrolpercent = 5
+"Neutral Wins" = 0
+"Stocks Taken" = 0
+"Openings / Kill" = 0
+"Neutral Win %" = 1
+"Total Damage Dealt" = 2
+"Average Kill Percent" = 3
+"Average Damage / Opening" = 4
+"Earliest Kill" = 0
+"Latest Death" = 0
+"Stage Control" = 5
