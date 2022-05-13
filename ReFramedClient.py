@@ -133,8 +133,8 @@ class ReFramedClient:
                     self.sock.send(bytes([MatchResume, TrainingResume]))
                     continue  # All good
 
-                logging.info(f"Mapping info outdated, requesting new")
-                self.sock.send(bytes([MappingInfoRequest]))
+                #logging.info(f"Mapping info outdated, requesting new")
+                #self.sock.send(bytes([MappingInfoRequest]))
 
             elif msg_type == MappingInfoRequest:
                 # Checksum is a uint32
