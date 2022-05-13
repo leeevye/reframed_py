@@ -8,7 +8,7 @@ import toml
 logging.basicConfig(level=logging.INFO)
 
 settings = toml.load("settings.toml")
-switchip = settings[switch][ipaddress]
+switchip = settings["switch"]["ipaddress"]
 
 client = ReFramedClient()
 if switchip == "0.0.0.0":
