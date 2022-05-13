@@ -93,6 +93,8 @@ def replayedstatistics(replayfile, filename):
             durationframes = startframe - endframe
             durationseconds = round(durationframes/60)
             durationmins, durationsecs = divmod(durationseconds, 60)
+            if durationsecs < 10:
+                durationsecs = "0"+str(durationsecs)
             replayfile.close()
             break
 
@@ -186,7 +188,7 @@ def replayedstatistics(replayfile, filename):
             for stat in statsettings:
                 outputfile.write(stat+"\n")
 
-        file = "stats\\collection\\"+filename[11:].removesuffix('.replay')+".txt"
+        file = "stats\\collection\\"+filename[8:].removesuffix('.replay')+".txt"
         with open(file, "a") as outputfile:
             outputfile.write("Player 1:\n")
             finalstatistics(p1punishes, p2punishes, p1killingpunishes, p2damagetaken, p1damagesatdeath, p2damagesatdeath, p1stagecontrol, p2stagecontrol, p1firsthits, p1lasthits, outputfile)
@@ -206,14 +208,15 @@ def replayedstatistics(replayfile, filename):
             outputfile.write(players["0"][2]+"\n")
             outputfile.write("P2 Character: ")
             outputfile.write(players["1"][2]+"\n")
-            outputfile.write("P1 Alt: ")
-            outputfile.write("N/A"+"\n")
-            outputfile.write("P2 Alt: ")
-            outputfile.write("N/A"+"\n")
-            outputfile.write("P1 Tag: ")
-            outputfile.write(players["0"][0]+"\n")
-            outputfile.write("P2 Tag: ")
-            outputfile.write(players["1"][0]+"\n")
+            if False:
+                outputfile.write("P1 Alt: ")
+                outputfile.write("N/A"+"\n")
+                outputfile.write("P2 Alt: ")
+                outputfile.write("N/A"+"\n")
+                outputfile.write("P1 Tag: ")
+                outputfile.write(players["0"][0]+"\n")
+                outputfile.write("P2 Tag: ")
+                outputfile.write(players["1"][0]+"\n")
 
 def convertstats(stats):
     """
@@ -273,7 +276,7 @@ def finalstatistics(playerpunishes, opponentpunishes, playerkillingpunishes, opp
         outputfile.write(str(round((playerpunishes/(playerpunishes+opponentpunishes))*100, 2))+"%\n")
     except:
         outputfile.write("N/A\n")
-    outputfile.write("Total Damage Done: ")
+    outputfile.write("Total Damage Dealt: ")
     outputfile.write(str(round(opponentdamagetaken, 1))+"\n")
     outputfile.write("Average Kill Percent: ")
     try:
