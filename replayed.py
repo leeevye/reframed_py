@@ -4,6 +4,14 @@ import os
 import statistics
 import toml
 
+settings = toml.load("settings.toml")
+statistics = settings["statistics"]
+statistics = {k:v for k,v in statistics.items() if v != 0}
+statistics = dict(sorted(statistics.items(), key=lambda item: item[1]))
+statistics = list(statistics)
+print(statistics)
+input()
+
 frame = 0
 idx = 1
 stocks = 2
