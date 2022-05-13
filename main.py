@@ -3,15 +3,20 @@ import logging
 from ReFramedClient import ReFramedClient
 from datetime import datetime
 import replayed
+import toml
 
 logging.basicConfig(level=logging.INFO)
 
+settings = toml.load("settings.toml")
+switchip = settings[switch][ipaddress]
+
 client = ReFramedClient()
-if len(sys.argv) > 1:
-    if not client.connect(sys.argv[1]):
+if switchip == "0.0.0.0":
+    print("You can set your Switch's IP in settings.toml to connect faster next time!")
+    if not client.connect(input("Enter your Switch IP Address: ")):
         sys.exit(1)
 else:
-    if not client.connect("192.168.15.47"): #client.connect(input("Switch IP Address: ")):
+    if not client.connect(switchip):
         sys.exit(1)
 
 @client.on_training_started

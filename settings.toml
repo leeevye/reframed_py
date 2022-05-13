@@ -1,0 +1,17 @@
+title = "Settings"
+
+[switch]
+ipaddress = "192.168.20.10"
+
+[statistics]
+# Order the output of statistics by numbering here. Use a 0 to exclude a statistic.
+neutralwins = 0
+stockstaken = 0
+openingsperkill = 0
+neutralwinpercent = 1
+totaldamagedealt = 2
+averagekillpercent = 3
+averagedamageperopening = 4
+earliestkill = 0
+latestdeath = 0
+stagecontrolpercent = 5

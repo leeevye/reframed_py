@@ -1,0 +1,11 @@
+title = "Stage Width"
+
+[values]
+bf = 160
+fd = 160
+lylat = 160
+sv = 140
+ps2 = 187.5
+kalos = 160
+town = 165
+sbf = 160
