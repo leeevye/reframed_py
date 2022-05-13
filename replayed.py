@@ -180,40 +180,36 @@ def replayedstatistics(replayfile, filename):
             basicstatistics(p2punishes, p1punishes, p2killingpunishes, p1damagetaken, p2damagesatdeath, p1damagesatdeath, p2stagecontrol, p1stagecontrol, p2firsthits, p2lasthits, outputfile)
         open("stats\\names.stats", 'w').close()
         with open("stats\\names.stats", 'a') as outputfile:
-            outputfile.write("VS\n\nNeutral Wins\nStocks Taken\nOpenings / Kill\nNeutral Win %\nTotal Damage Done\nAverage Kill Percent\nAverage Damage / Opening\nEarliest Kill\nLatest Death\nStage Control %")
+            outputfile.write("VS\n\nNeutral Wins\nStocks Taken\nOpenings / Kill\nNeutral Win %\nTotal Damage Dealt\nAverage Kill Percent\nAverage Damage / Opening\nEarliest Kill\nLatest Death\nStage Control %")
 
-        filenames = ["stats\\"+filename[11:].removesuffix('.replay')+".stats", "stats\\latest.stats"]
-        #filename = filename[11:].removesuffix('.replay')+".stats"
-        #filename = "latest.stats"
-        for file in filenames:
-            open(file, 'w').close()
-            with open(file, "a") as outputfile:
-                outputfile.write("Player 1:\n")
-                finalstatistics(p1punishes, p2punishes, p1killingpunishes, p2damagetaken, p1damagesatdeath, p2damagesatdeath, p1stagecontrol, p2stagecontrol, p1firsthits, p1lasthits, outputfile)
-                outputfile.write("\nPlayer 2:\n")
-                finalstatistics(p2punishes, p1punishes, p2killingpunishes, p1damagetaken, p2damagesatdeath, p1damagesatdeath, p2stagecontrol, p1stagecontrol, p2firsthits, p2lasthits, outputfile)
+        file = ["stats\\collection\\"+filename[11:].removesuffix('.replay')+".stats"]
+        with open(file, "a") as outputfile:
+            outputfile.write("Player 1:\n")
+            finalstatistics(p1punishes, p2punishes, p1killingpunishes, p2damagetaken, p1damagesatdeath, p2damagesatdeath, p1stagecontrol, p2stagecontrol, p1firsthits, p1lasthits, outputfile)
+            outputfile.write("\nPlayer 2:\n")
+            finalstatistics(p2punishes, p1punishes, p2killingpunishes, p1damagetaken, p2damagesatdeath, p1damagesatdeath, p2stagecontrol, p1stagecontrol, p2firsthits, p2lasthits, outputfile)
 
-                outputfile.write("\nStage: ")
-                outputfile.write(stage) #stage
-                outputfile.write("Duration: ")
-                outputfile.write(str(durationmins)+":"+str(durationsecs)+"\n")
-                outputfile.write("First Blood: ")
-                try:
-                    outputfile.write(firstblood+"\n")
-                except:
-                    outputfile.write("N/A\n")
-                outputfile.write("P1 Character: ")
-                outputfile.write(players["0"][2]+"\n")
-                outputfile.write("P2 Character: ")
-                outputfile.write(players["1"][2]+"\n")
-                outputfile.write("P1 Alt: ")
-                outputfile.write("N/A"+"\n")
-                outputfile.write("P2 Alt: ")
-                outputfile.write("N/A"+"\n")
-                outputfile.write("P1 Tag: ")
-                outputfile.write(players["0"][0]+"\n")
-                outputfile.write("P2 Tag: ")
-                outputfile.write(players["1"][0]+"\n")
+            outputfile.write("\nStage: ")
+            outputfile.write(stage) #stage
+            outputfile.write("Duration: ")
+            outputfile.write(str(durationmins)+":"+str(durationsecs)+"\n")
+            outputfile.write("First Blood: ")
+            try:
+                outputfile.write(firstblood+"\n")
+            except:
+                outputfile.write("N/A\n")
+            outputfile.write("P1 Character: ")
+            outputfile.write(players["0"][2]+"\n")
+            outputfile.write("P2 Character: ")
+            outputfile.write(players["1"][2]+"\n")
+            outputfile.write("P1 Alt: ")
+            outputfile.write("N/A"+"\n")
+            outputfile.write("P2 Alt: ")
+            outputfile.write("N/A"+"\n")
+            outputfile.write("P1 Tag: ")
+            outputfile.write(players["0"][0]+"\n")
+            outputfile.write("P2 Tag: ")
+            outputfile.write(players["1"][0]+"\n")
 
 def convertstats(stats):
     """

@@ -59,8 +59,15 @@ def handle_match_started(mapping_info, stage_id, fighter_ids, tags, names):
     open("stats\\p1.stats", 'w').close()
     open("stats\\p2.stats", 'w').close()
     open("stats\\names.stats", 'w').close()
+    open("stats\\p1char.stats", 'w').close()
+    open("stats\\p2char.stats", 'w').close()
+
     with open("stats\\names.stats", 'a') as outputfile:
         outputfile.write("Calculating...")
+    with open("stats\\p1char.stats", 'a') as outputfile:
+        outputfile.write(mapping_info.fighter_names[fighter_ids[0]])
+    with open("stats\\p2char.stats", 'a') as outputfile:
+        outputfile.write(mapping_info.fighter_names[fighter_ids[1]])
 
     try:
         print(f"stage: {mapping_info.stage_names[stage_id]}")
@@ -80,7 +87,7 @@ def handle_match_started(mapping_info, stage_id, fighter_ids, tags, names):
     global countingdown
     global countdown
     countingdown = False
-    countdown = 6
+    countdown = 2
 
     mappinginfo = mapping_info
     fighterids = fighter_ids
@@ -148,7 +155,7 @@ def handle_match_ended():
     global countingdown
     global countdown
     countingdown = False
-    countdown = 10
+    countdown = 2
     with open("stats\\obsscene.stats", 'w') as outputfile:
         outputfile.write("Statistics")
     #try:
@@ -191,7 +198,7 @@ def handle_frame(mapping_info, frame, idx, fighter_ids, posx, posy, damage, hits
     frameinfo = f"{frame=}, {idx=}, {stocks=}, {damage=}, {hitstun=}, {shield=}, {posx=}, {posy=}, {status=}, {attack_connected=}\n"
     #print(frameinfo)
 
-    if stocks == 0 and countingdown == False and countdown == 6:
+    if stocks == 0 and countingdown == False and countdown == 2:
         countingdown = True
 
     if countdown == 0:
