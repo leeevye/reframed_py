@@ -10,6 +10,11 @@ logging.basicConfig(level=logging.INFO)
 settings = toml.load("settings.toml")
 switchip = settings["switch"]["ipaddress"]
 
+if not settings["readme"]["agree"]:
+        print(settings["readme"]["readme"])
+        print("By continuing, you agree to not share this version of Replayed.")
+        input("Press enter to continue.")
+        
 client = ReFramedClient()
 if switchip == "0.0.0.0":
     print("You can set your Switch's IP in settings.toml to connect faster next time!")

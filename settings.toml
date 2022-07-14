@@ -1,3 +1,15 @@
+[readme]
+readme = """
+This version of Replayed is intended for use only at X.
+Do not share this version of Replayed without permission from Vye. (Vye#0547)
+
+While there is some extremely messy code, it all functions as intended.
+Because there are portions of code that are a mess, Replayed is not to be publicly released in its current form.
+"""
+# Enter "true" without quotation marks if you
+# agree to not share this version of Replayed.
+agree = false
+
 [switch]
 ipaddress = "0.0.0.0"
 
