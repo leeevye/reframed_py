@@ -197,8 +197,12 @@ def handle_frame(mapping_info, frame, idx, fighter_ids, posx, posy, damage, hits
             status = "UNKNOWN_STATUS"
         except:
             status = "UNKNOWN_STATUS"
-            print(mapping_info.fighter_specific_status_names[fighter_ids[idx]])
             print(status[0])
+            try:
+                print(mapping_info.fighter_specific_status_names[fighter_ids[idx]])
+            except:
+                pass
+            
 
     frameinfo = f"{frame=}, {idx=}, {stocks=}, {damage=}, {hitstun=}, {shield=}, {posx=}, {posy=}, {status=}, {attack_connected=}\n"
     #print(frameinfo)
